@@ -1,5 +1,5 @@
 a = "antonio"
-b = "tonnioad"
+b = "tonnioa"
 
 from collections import Counter
 
@@ -8,6 +8,9 @@ dos = Counter(list(b))
 
 print(uno == dos)
 
+temp1 = sorted(list(a))
+temp2 = sorted(list(b))
+print(temp1 == temp2)
 
 
 
