@@ -9,5 +9,5 @@ for i in test:
 		dictio[i] = 1
 
 for i, j in dictio.items():
-	if j > 1:
+	if j == 1:
 		print(i)
