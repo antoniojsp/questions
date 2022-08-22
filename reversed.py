@@ -1,19 +1,17 @@
 test = "maria"
 reverse = "airam"
-output = ""
-
-antonio = list(test)
-last_element = len(antonio) - 1
-
-for i in range(int(len(antonio)/2)):
-	antonio[i], antonio[last_element] = antonio[last_element], antonio[i]
-	last_element -= 1
-	
-final = "".join(antonio)
-print(final)
-print(final == reverse)
 
 
+def reverse_str(str):
+	list_str = list(test)
+	last_element = len(list_str) - 1
 
+	for i in range(int(len(list_str)/2)):
+		list_str[i], list_str[last_element] = list_str[last_element], list_str[i]
+		last_element -= 1
+		
+	return "".join(list_str)
 
-# print(temp)
+print(reverse, reverse_str(test))
+
+print(reverse == reverse_str(test))
