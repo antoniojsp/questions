@@ -4,10 +4,11 @@ def find_missing(arr:list)->int:
 	if not arr:
 		return -1
 
-	lenght = arr[-1]
-	list_sum = sum(a)
-	sum_needed = (lenght*(lenght+1)/2)
+	upper_number = arr[-1]
+	arr_sum = sum(arr)
+	range_sum = (upper_number*(upper_number+1)/2) # 
 
-	return int(sum_needed - list_sum)
+
+	return int(range_sum - arr_sum)
 
 print(find_missing(a))
