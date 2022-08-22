@@ -1,10 +1,13 @@
-a = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+a = [1,2,3,5,6,7,8]
 
-def find_missing(arr):
+def find_missing(arr:list)->int:
+	if not arr:
+		return -1
+
 	lenght = arr[-1]
-	suma_real = sum(a)
-	suma_teorica = (lenght*(lenght+1)/2)
+	list_sum = sum(a)
+	sum_needed = (lenght*(lenght+1)/2)
 
-	return suma_teorica - suma_real
+	return int(sum_needed - list_sum)
 
 print(find_missing(a))

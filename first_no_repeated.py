@@ -1,16 +1,14 @@
 from collections import Counter
 
-test = "aaddbajdjdjdkkk"
+test = "aaddbbajdjdjdkkk"
 
 
-def first_no_repeat(str):
+def first_no_repeat(string:str) -> str:
 	result = ""
-	test_counter = Counter(str)
-	print(test_counter)
-	for i in test:
-		if test_counter[i] == 1:
-			return i
-
+	count_char = Counter(string)
+	for char in string:
+		if count_char[char] == 1:
+			return char
 	return ""
 
 print(first_no_repeat(test))
