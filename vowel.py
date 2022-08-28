@@ -4,6 +4,7 @@ def number_vowel_consonant(string:str)->tuple:
 	consonants = "bcdfghjklmnpqrstvwxyz"
 	vowel_number = 0
 	consonant_number = 0
+	
 	for char in string.lower():
 		if char in vowels:
 			vowel_number += 1
