@@ -1,23 +1,24 @@
 def swap(arr, a, b):
-	arr[a], arr[b] = arr[b], arr[a]
+	arr[b], arr[a] = arr[a], arr[b]
 	return arr
 
+def insertion_sort(arr:list)->list:
+	arr_copy = arr.copy()
+	i = 0
+	for i in range(len(arr_copy)):
+		j = i
+		print(arr_copy, j)
+		while j > 0:
+			if arr_copy[j-1] > arr_copy[j]:
+				print("swap")
+				swap(arr_copy, j-1,j)
+				print(arr_copy)
+				j -= 1
+			else:
+				break
+
+	return arr_copy
 
 test = [5,4,12,1,3,1]
 
-
-# for i in range(len(test)):
-# 	if test[i] > test[i+1]:
-# 		swap(test, i, i+1)
-
-
-i = 0
-while i < len(test)-1:
-	j = i
-	while j < len(test)-1:
-		if test[i] > test[i+1]:
-			swap(test, i, i+1)
-			i -= 1
-		i +=1 
-
-print(test)
+print(insertion_sort(test))
