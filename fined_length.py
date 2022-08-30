@@ -21,8 +21,9 @@ class SLinkedList:
    def print(self):
       temp = self.headval
       while temp != None:
-         print(temp.dataval)
+         print(temp.dataval, end=" ")
          temp = temp.nextval
+      print()
 
    def find_middle(self):
       once = self.headval
@@ -34,7 +35,7 @@ class SLinkedList:
             once = once.nextval
             twice = twice.nextval
 
-      print(once.dataval)
+      return once.dataval
 
    def reverse(self):
       prev =  None
@@ -48,20 +49,59 @@ class SLinkedList:
          current = next # move current as next to use the next node
       self.headval = prev # set previous as head
 
+   def remove_duplicate(self):
+
+      duplicate = {}
+      current = self.headval
+      prev = None
+      while current != None:
+         current_value = current.dataval
+         if current_value in duplicate:
+            duplicate[current_value] += 1
+            prev.nextval = current.nextval
+            current = prev.nextval
+            continue
+         else:
+            duplicate[current_value] = 1
+
+         prev = current
+         current = current.nextval
+         
+   def length(self):
+      count = 0
+      current = self.headval
+
+      while current != None:
+         count +=1
+         current = current.nextval
+
+      return count
 
 
-
-
+      
 
 
 list1 = SLinkedList()
 list1.insert(2)
 list1.insert(3)
 list1.insert(4)
+list1.insert(4)
+list1.insert(6)
+list1.insert(6)
+list1.insert(6)
+list1.insert(6)
+list1.insert(6)
+list1.insert(4)
+list1.insert(4)
+list1.insert(4)
+list1.insert(6)
+list1.insert(5)
+list1.insert(5)
 list1.insert(5)
 list1.insert(6)
 list1.insert(6)
-list1.insert(7)
+list1.insert(6)
+list1.insert(6)
+print(list1.length())
 
-list1.reverse()
 list1.print()
