@@ -6,7 +6,10 @@ class Node:
 class SLinkedList:
    def __init__(self):
       self.headval = None
-      self.count = 0
+
+   @classmethod
+   def move_one_node(node):
+      return node.nextval
 
    def insert(self, data):
       new_node = Node(data)
@@ -16,10 +19,8 @@ class SLinkedList:
       else:
          temp = self.headval
          while temp.nextval != None:
-            temp = temp.nextval
+            temp = move_one_node(temp)
          temp.nextval = new_node
-
-      self.count +=1
 
    def print(self):
       temp = self.headval
@@ -63,14 +64,13 @@ class SLinkedList:
             duplicate[current_value] += 1
             prev.nextval = current.nextval
             current = prev.nextval
-            self.count -= 1
             continue
          else:
             duplicate[current_value] = 1
 
          prev = current
          current = current.nextval
-
+         
    def length(self):
       count = 0
       current = self.headval
@@ -78,48 +78,45 @@ class SLinkedList:
       while current != None:
          count +=1
          current = current.nextval
-      print(self.count)
+
       return count
 
-   def find(self, value):
-      current = self.headval
+   def find_position(self, position:int):
+      count = 0
+      temp = self.headval
 
-      while current != None:
-         if current.dataval == value:
-            return True
+      while count < position-1:
+         count+=1
+         temp = temp.nextval
 
-         current = current.nextval
+      return temp.dataval
 
-      return False
-
-   
 
 
       
+
+
 list1 = SLinkedList()
 list1.insert(2)
 list1.insert(3)
-list1.insert(4)
-list1.insert(4)
-list1.insert(6)
-list1.insert(6)
-list1.insert(6)
-list1.insert(6)
-list1.insert(6)
-list1.insert(4)
-list1.insert(4)
-list1.insert(4)
-list1.insert(6)
-list1.insert(5)
-list1.insert(5)
-list1.insert(5)
-list1.insert(6)
-list1.insert(6)
-list1.insert(6)
+list1.insert(1000)
 list1.insert(11)
-
-print(list1.find(5))
-print(list1.find(11))
-print(list1.remove_duplicate())
+list1.insert(6)
+list1.insert(6)
+list1.insert(60)
+list1.insert(6)
+list1.insert(6)
+list1.insert(4)
+list1.insert(4)
+list1.insert(4)
+list1.insert(6)
+list1.insert(5)
+list1.insert(5)
+list1.insert(5)
+list1.insert(6)
+list1.insert(6)
+list1.insert(6)
+list1.insert(6)
 print(list1.length())
-
+print(list1.find_position(7))
+list1.print()
