@@ -1,24 +1,18 @@
-n = 123451234
-print(n)
+n = 123433
 import math
 
-result = 0
-count = math.floor(math.log10(n)+1)
-while n > 0:
-	temp = n % 10
-	n =  n - temp
-	print(int(temp))
-	n = n/10
-	result =  result*10 + temp
+def invert_integer(number:int)->int:
+	result = 0
+	while number > 0:
+		last_digit= number % 10
+		number-=last_digit
+		number/=10
+		#forming the invert number
+		result= result*10 + last_digit
 
-print(int(result))
+	return int(result)
 
-# 5 = 0 + 5
-# 54 = 50 + 4
-# 543  =54+ 3
-# 5432 = 543 + 2
-# 54321 5432 + 1
-		
+print(invert_integer(n))
 
 
 
