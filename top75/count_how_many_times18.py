@@ -4,7 +4,7 @@ test = 'Today is Monday'
 
 def count_char(string:str, character:chr)->int:
 	'''
-	o(n)
+	o(n)c
 	'''
 	count = 0
 	for i in string:
