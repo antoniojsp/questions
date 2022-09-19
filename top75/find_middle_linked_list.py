@@ -5,6 +5,12 @@ class ErrorCycle(Exception):
 	def __init__(self):
 		print("Cycle Detected")
 
+class ErrorLength(Exception):
+	def __init__(self):
+		print("Location out of bounds")
+
+
+
 class Link:
 	def __init__(self, data):
 		self.data = data
@@ -15,41 +21,41 @@ class LinkedList:
 		self.head = None
 
 	def insert(self, data):
-		temp = Link(data)
+		insert = Link(data)
 		if not self.head:
-			self.head = temp
+			self.head = insert
 		else:
 			current = self.head
 			while current.next != None:
 				current = current.next
-			current.next = temp
+			current.next = insert
 
 	def print(self):
-		pointer = self.head
+		current = self.head
 
 		if self.detect_cycle():
 			raise ErrorCycle
 
-		while pointer != None:
-			print(pointer.data)
-			pointer = pointer.next
+		while current != None:
+			print(current.data)
+			current = current.next
 
 
 	def middle_element(self):
 		'''
 		Detect middle element in one pass
 		'''
-		once = self.head
-		twice = self.head
+		one_step = self.head
+		two_steps = self.head
 
 		if self.detect_cycle():
 			raise ErrorCycle
 
-		while twice.next != None:
-			once = once.next
-			twice = twice.next
-			if twice != None and twice.next != None :
-				twice = twice.next
+		while two_steps.next != None:
+			one_step = one_step.next
+			two_steps = two_steps.next
+			if two_steps != None and two_steps.next != None :
+				two_steps = two_steps.next
 
 		return once.data
 
@@ -65,64 +71,67 @@ class LinkedList:
 
 
 
-	def create_cycle(self):
-		temp = self.head
-		i = 0
-		while i > 2 and temp.next != None:
-			print("here", temp.data)
-			temp = temp.next
-			i+=1
+	def create_cycle(self, location):
 
-		temp.next = self.head
+		if location >= self.length():
+			raise ErrorLength
+
+		current = self.head
+		while current.next != None:
+			current = current.next
+
+		i = 0
+		index = self.head
+		while i < location:
+			index = index.next
+			i+=1
+		print("Cycle created in", index.data)
+		current.next = index
 
 	def detect_cycle(self):
+		'''
+		using set
+		'''
 		pointer = self.head
-
 		storage = set()
-
 		while pointer != None:
 			if pointer in storage:
-				print("Cycle", pointer.data)
+				print("Cycle in (detected)", pointer.data)
 				return True
 			storage.add(pointer)
 			pointer=pointer.next
 
 		return False
 
-
+		'''
+		Detects loop but cannot detect location. Use set instead
+		'''
 		# pointer1 = self.head
 		# pointer2 = self.head
-
-		# addresses = set()		
-		# while pointer2 != None and pointer2.next != None:
-
+		# while pointer2 and pointer2.next:
 		# 	pointer1 = pointer1.next
 		# 	pointer2 = pointer2.next.next
-
 		# 	if pointer1 == pointer2:
-		# 		print("Cycle", pointer2.data)
 		# 		return True
-
 		# return False
 
-
+def p(val):
+	print("#####",val,"#####")
 
 
 a = LinkedList()
-a.insert(2)
-a.insert(13)
-a.insert(12)
-a.insert(3)
-a.insert(14)
-a.insert(15)
 a.insert(1)
-
-print(a.length())
-
+a.insert(2)
+a.insert(3)
+a.insert(4)
+a.insert(5)
+a.insert(6)
+a.insert(7)
+p("Original")
 a.print()
+
 print()
-a.create_cycle()
-# print(a.middle_element())
-a.print()
+p("If Cycle:")
+a.create_cycle(3)
 print(a.detect_cycle())
 
