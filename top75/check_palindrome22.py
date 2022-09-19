@@ -2,7 +2,26 @@
 
 
 from collections import Counter
-test = "na"
+test = "maria"
+
+def is_palindrome_recursive(string:str, index)->bool:
+
+	if index < 0:
+		return ""
+
+	return string[index] + is_palindrome_recursive(string, index-1) 
+
+def check_palindrome(string:str)->bool:
+	return string == is_palindrome_recursive(string, len(string)-1)
+
+
+
+print(is_palindrome_recursive(test, len(test)-1))
+# print(check_palindrome(test))
+
+
+
+
 
 def is_palindrome(string:str)->bool:
 
@@ -33,14 +52,14 @@ def is_palindrome3(string:str)->bool:
 	return True
 
 
-print(is_palindrome3(test))
+# print(is_palindrome3(test))
 
 
-x = "malayalam"
+# x = "malayalam"
  
-w = ""
-for i in x:
-	w = i + w
-print(w)
+# w = ""
+# for i in x:
+# 	w = i + w
+# print(w)
 
 

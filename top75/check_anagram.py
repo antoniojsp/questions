@@ -3,8 +3,8 @@
 from collections import Counter
 
 
-s1 = "anna"
-s2 = "nana"
+s1 = "tom marvolo riddle"
+s2 = "iam lord voldemort"
 
 def check_anagram1(string1:str, string2:str)->bool:
 
