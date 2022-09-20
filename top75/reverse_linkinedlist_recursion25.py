@@ -40,6 +40,19 @@ class LinkedList:
 			print(current.data)
 			current = current.next
 
+	def print_r(self, head:Link):
+
+		if head == None:
+			return 
+		else:
+			print(head.data)
+
+		self.print_r(head.next)
+
+
+	def print_recursion(self):
+		self.print_r(self.head)
+
 
 	def middle_element(self):
 		'''
@@ -115,6 +128,27 @@ class LinkedList:
 				return True
 		return False
 
+	def reverse_rec(self, head):
+		'''
+		1 -> 2 -> 3 -> 4
+
+		1 -> 2 -> |3| ->4 
+
+		1 -> 2   4 -> 3
+			 |		  |	
+			 |________|
+
+		'''
+		if head.next is None:
+		    return head
+		rest = self.reverse_rec(head.next) # gets to this point till the end of the list [7]
+		head.next.next = head
+		head.next = None
+		return rest
+
+	def reverse(self):
+		self.head = self.reverse_rec(self.head) #set the result as head of the linked
+
 def p(val):
 	print("#####",val,"#####")
 
@@ -132,6 +166,10 @@ a.print()
 
 print()
 p("If Cycle:")
-a.create_cycle(2)
+# a.create_cycle(2)
 print(a.detect_cycle())
+print(a.reverse())
+p("Print recursion")
+# a.print_recursion()
+a.print()
 

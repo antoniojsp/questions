@@ -1,5 +1,4 @@
-# 23. How to find the middle element of a singly linked list in one pass?
-
+# 27. How to remove duplicate nodes in an unsorted linked list? (solution)
 
 class ErrorCycle(Exception):
 	def __init__(self):
@@ -115,23 +114,38 @@ class LinkedList:
 				return True
 		return False
 
+
+	def remove_duplicate(self):
+		duplicate = {}
+		current = self.head
+		prev = None
+		while current:
+			if current.data in duplicate:
+				prev.next = current.next
+			else:
+				duplicate[current.data] = True
+				prev = current
+
+			current = current.next
+
+
 def p(val):
-	print("#####",val,"#####")
+	print("\n#####",val,"#####\n")
 
 
 a = LinkedList()
-a.insert(1)
+a.insert(47)
 a.insert(2)
-a.insert(3)
-a.insert(4)
-a.insert(5)
-a.insert(6)
-a.insert(7)
+a.insert(34)
+a.insert(47)
+a.insert(2)
+a.insert(34)
+a.insert(47)
 p("Original")
 a.print()
+a.remove_duplicate()
+p("Remove duplicates")
+a.print()
 
-print()
-p("If Cycle:")
-a.create_cycle(2)
-print(a.detect_cycle())
+
 

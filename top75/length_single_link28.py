@@ -1,4 +1,4 @@
-# 23. How to find the middle element of a singly linked list in one pass?
+# 28. How to find the length of a singly linked list? (solution)
 
 
 class ErrorCycle(Exception):
@@ -69,6 +69,15 @@ class LinkedList:
 
 		return llength
 
+	#recursive
+	def length_recursive(self, node):
+		if node == None:
+			return 0
+
+		return 1 + self.length_recursive(node.next)
+
+	def length_rec(self):
+		return self.length_recursive(self.head)
 
 
 	def create_cycle(self, location):
@@ -115,23 +124,79 @@ class LinkedList:
 				return True
 		return False
 
+
+	def remove_duplicate(self):
+		duplicate = {}
+		current = self.head
+		prev = None
+		while current:
+			if current.data in duplicate:
+				prev.next = current.next
+			else:
+				duplicate[current.data] = True
+				prev = current
+
+			current = current.next
+
+	def thirdNodeEnd(self):
+
+		'''
+
+		With Data Structure
+		'''
+		# positions = []
+		# current = self.head
+		# while current:
+		# 	positions.append(current.data)
+		# 	current = current.next
+		# return positions[-3]
+
+
+		result = self.head
+		top_stop = self.head
+
+		i = 0
+
+		while top_stop:
+
+			top_stop = top_stop.next
+			if i > 2:
+				result = result.next
+			i +=1
+
+
+		# for times in range(3):
+		# 	top_stop = top_stop.next
+
+		# while top_stop:
+		# 	result = result.next
+		# 	top_stop = top_stop.next
+
+		# while top_stop:
+
+
+		return result.data
+
 def p(val):
-	print("#####",val,"#####")
+	print("\n#####",val,"#####\n")
 
 
 a = LinkedList()
-a.insert(1)
+a.insert(47)
 a.insert(2)
-a.insert(3)
-a.insert(4)
-a.insert(5)
-a.insert(6)
-a.insert(7)
-p("Original")
-a.print()
+a.insert(34)
+a.insert(47)
+a.insert(2)
+a.insert(34)
+a.insert(47)
+print("third", a.thirdNodeEnd())
 
-print()
-p("If Cycle:")
-a.create_cycle(2)
-print(a.detect_cycle())
+# p("Original")
+# a.print()
+# print("Length:", a.length_rec())
+# a.remove_duplicate()
+# p("Remove duplicates")
+# a.print()
+
+# print("Length:", a.length_rec())
 
