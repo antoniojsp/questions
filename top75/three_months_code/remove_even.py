@@ -53,7 +53,6 @@ def remove_even3(arr: list) -> list:
         if is_even(arr[i]):
             remove_element(arr, i)
             continue
-            i -= 1
         i += 1
     return arr
 
