@@ -6,8 +6,7 @@ def merge_and_sort(arr_x: list, arr_y: list) -> list:
     '''
     O(n)
     '''
-    i = 0
-    j = 0
+    i = j = 0
 
     result = []
     while not i == len(arr_x) or not j == len(arr_y):
